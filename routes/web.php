@@ -13,10 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/',  function () {
+    return view('urlshortener');
 });
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/url/shorten', [App\Http\Controllers\UrlShortenController::class, 'store']);
+Route::get('/u/{any}', [App\Http\Controllers\UrlShortenController::class, 'handle']);
